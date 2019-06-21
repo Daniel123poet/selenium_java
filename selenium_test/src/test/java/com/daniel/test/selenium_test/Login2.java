@@ -1,15 +1,20 @@
 package com.daniel.test.selenium_test;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.collections.functors.ForClosure;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 
 /**
@@ -25,7 +30,7 @@ public class Login2 {
 		driver.manage().window().maximize();
 	}
 	
-	public void loginScript(String username, String password) throws InterruptedException{
+	public void loginScript(String username, String password) throws InterruptedException, IOException{
 		this.initDriver();
 //		String username = "andy_wyzxw";
 //		String password = "wdmhwl1002";
@@ -67,6 +72,7 @@ public class Login2 {
 		//判断登录后网页显示的用户名是我们登录的那个用户名
 		if(userInfoText.indexOf(username)!=-1){
 			System.out.println("登陆成功");
+			this.takeScreenshot();
 		}else{
 			System.out.println("登录失败");
 		}
@@ -105,6 +111,23 @@ public class Login2 {
 		return ele;
 	}
 	
+	/**
+	 * 截图
+	 * @throws IOException 
+	 * */
+	public void takeScreenshot() throws IOException{
+		long date = System.currentTimeMillis();
+		String fileName = String.valueOf(date);
+		String fullName = fileName + ".png";
+		String curPath = System.getProperty("user.dir"); //这个获取到的是当前工程路径
+		String filePath = curPath + "\\" + fullName;
+		File screen = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//		System.out.println(curPath);
+		FileUtils.copyFile(screen, new File(filePath));
+		
+	}
+	
+	
 	
 	/**
 	 * 关闭 Driver
@@ -115,16 +138,17 @@ public class Login2 {
 		driver.close();
 	}
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		Login2 login = new Login2();
 //		login.loginScript("danielqq", "yanggege1002");
+		
 		/**
 		 * HashMap 
 		 * key-value的形式
 		 * */
 		Map<String, String> user = new HashMap<String, String>();
 		user.put("danielqq", "yanggege1002");
-		user.put("andy_wyzxw", "wdmhwl1002");
+//		user.put("andy_wyzxw", "wdmhwl1002");
 	
 		for(Map.Entry<String, String> userInfo : user.entrySet()){
 			String username = userInfo.getKey().toString();
@@ -132,6 +156,7 @@ public class Login2 {
 			System.out.println(username+": "+password);
 			login.loginScript(username, password);
 		}
+		
 		
 //		Iterator<Map.Entry<String, String>> iter = user.entrySet().iterator();
 //		while(iter.hasNext()){

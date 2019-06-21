@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
+
 public class Login {
 
 	public WebDriver driver;
@@ -17,7 +18,7 @@ public class Login {
 		driver.manage().window().maximize();
 	}
 	
-	@Test
+	@Test(dependsOnMethods={"initDriver"})
 	public void loginScript() throws InterruptedException{
 		driver.findElement(By.linkText("登录")).click();
 		Thread.sleep(2000);
@@ -45,11 +46,11 @@ public class Login {
 		}
 	}
 	
-	public static void main(String[] args) throws InterruptedException {
-		Login login = new Login();
-		login.initDriver();
-		login.loginScript();
-	}
+//	public static void main(String[] args) throws InterruptedException {
+//		Login login = new Login();
+//		login.initDriver();
+//		login.loginScript();
+//	}
 	
 
 }

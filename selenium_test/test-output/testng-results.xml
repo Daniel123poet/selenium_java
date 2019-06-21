@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="22532" started-at="2019-06-21T11:21:45Z" finished-at="2019-06-21T11:22:08Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="22532" started-at="2019-06-21T11:21:45Z" finished-at="2019-06-21T11:22:08Z">
+      <class name="com.daniel.test.selenium_test.Login">
+        <test-method status="PASS" signature="initDriver()[pri:0, instance:com.daniel.test.selenium_test.Login@66d33a]" name="initDriver" duration-ms="14066" started-at="2019-06-21T19:21:45Z" finished-at="2019-06-21T19:21:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initDriver -->
+        <test-method status="PASS" signature="loginScript()[pri:0, instance:com.daniel.test.selenium_test.Login@66d33a]" name="loginScript" duration-ms="8447" started-at="2019-06-21T19:21:59Z" depends-on-methods="com.daniel.test.selenium_test.Login.initDriver" finished-at="2019-06-21T19:22:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginScript -->
+      </class> <!-- com.daniel.test.selenium_test.Login -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
